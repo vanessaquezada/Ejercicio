@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn btn-success mt-3" id="btn">Hacer peticion</button>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6">
+                <h1>PRUEBA DE AJAX</h1>
+                <p id="texto">                
+                Graduates of the program were expected to be able to read new text 
+                and write a short paragraph on a topic of interest.</p>
+                <button class="btn btn-success mt-3" id="btn2">Hacer peticion</button>
+                <br><br>
+                <div class="container" id="Response2">
+
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6">
+                <h2>CONTENDIO DE RESPUESTA A LA PETICION AJAX</h2>
+                <div class="container" id="Response">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+        $(document).ready(inicio);
+
+        function inicio() {
+            $("#btn").click(peticion);
+            $("#btn2").click(peticion2);
+            $("#texto").mouseover(peticion2);
+            $("#texto").mouseleave(function(){
+               $("#Response2").html("");
+            });
+        }
+        
+      
+
+        function peticion() {
+            $.ajax({
+                url: "/prueba3/vista2",
+                method: "Get",
+                data: null,
+                success: function (response) {
+                    $("#Response").html(response)
+                },
+                error: function (response) {
+                    alert("Error: " + response);
+                },
+            });
+        }
+
+        function peticion2() {
+            $.ajax({
+                url: "/prueba3/vista3",
+                method: "Get",
+                data: null,
+                success: function (response) {
+                    $("#Response2").html(response)
+                },
+                error: function (response) {
+                    alert("Error: " + response);
+                },
+            });
+        }
+
+        
+    </script>
+</body>
+</html>
